@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>小学英语游戏（3年级）</title>
+  <link rel="stylesheet" href="./styles_Version4.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>快乐学英语 🎉</h1>
+    <p class="subtitle">适合中国三年级：配对图片 / 听音选词</p>
+  </header>
+
+  <main class="main">
+    <section class="controls">
+      <label>游戏模式：
+        <select id="modeSelect">
+          <option value="match">配对图片</option>
+          <option value="listen">听音选词</option>
+        </select>
+      </label>
+
+      <label>题数：
+        <select id="countSelect">
+          <option value="6">6</option>
+          <option value="8" selected>8</option>
+          <option value="10">10</option>
+        </select>
+      </label>
+
+      <button id="startBtn" class="btn primary">开始游戏</button>
+      <button id="hintBtn" class="btn" title="听发音提示">提示 🔊</button>
+      <div class="score">
+        得分：<span id="score">0</span> | 最高：<span id="best">0</span>
+      </div>
+    </section>
+
+    <section id="gameArea" class="game-area">
+      <!-- 动态生成题目内容 -->
+      <div id="board" class="board"></div>
+    </section>
+
+    <section class="footer-area">
+      <div id="message" class="message">点击“开始游戏”开始哦！</div>
+      <button id="nextBtn" class="btn" style="display:none;">下一题 ▶</button>
+      <button id="restartBtn" class="btn" style="display:none;">再来一次 🔁</button>
+    </section>
+  </main>
+
+  <div id="confetti" class="confetti"></div>
+
+  <script src="./script_Version4.js"></script>
+</body>
+</html>

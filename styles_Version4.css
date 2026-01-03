@@ -1,0 +1,214 @@
+:root{
+  --bg:#fff9f0;
+  --card:#fff;
+  --accent:#ff7aa2;
+  --accent2:#6ec6ff;
+  --text:#2b2b2b;
+  --muted:#666;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  background:linear-gradient(180deg,var(--bg),#f0fcff);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:18px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:12px;
+}
+.header h1{
+  margin:6px 0;
+  font-size:28px;
+  letter-spacing:1px;
+}
+.subtitle{margin:0;color:var(--muted)}
+
+.main{
+  width:100%;
+  max-width:980px;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.controls label{
+  font-size:14px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+select{
+  padding:6px 8px;
+  font-size:24px;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+.btn{
+  background:var(--card);
+  border:1px solid #ddd;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+  transition:transform .08s ease;
+}
+.btn:active{transform:scale(.98)}
+.btn.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:white;
+  border:none;
+  font-weight:600;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+.score{
+  margin-left:auto;
+  font-weight:600;
+}
+
+.game-area{
+  min-height:620px;
+  background:rgba(163, 126, 126, 0.6);
+  border-radius:12px;
+  padding:14px;
+  box-shadow:5px 6px 20px rgba(0,0,0,.04);
+}
+
+.board{
+  display:grid;
+  gap:12px;
+  align-items:center;
+  justify-items:center;
+}
+
+/* 两种模式的布局 */
+.board.match{
+  grid-template-columns: 1fr 1fr;
+}
+.left-col, .right-col{
+  width:100%;
+}
+
+/* 单词列表 */
+.word-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+.word-card{
+  background:var(--card);
+  border-radius:10px;
+  padding:10px 14px;
+  border:2px solid #b41d1d;
+  font-size:30px;
+  cursor:pointer;
+  min-width:88px;
+  text-align:center;
+  transition:transform .12s ease, border-color .12s;
+  user-select:none;
+}
+.word-card.selected{transform:translateY(-6px); border-color:var(--accent2)}
+.word-card.correct{background:linear-gradient(90deg,#c6f6d5,#dfffe8); border-color:#67c23a}
+.word-card.wrong{animation:shake .3s}
+
+@keyframes shake{
+  0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}
+}
+
+/* 图片/emoji 卡片 */
+.picture-grid{
+  display:grid;
+  gap:10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.pic-card{
+  background:var(--card);
+  border-radius:10px;
+  padding:18px;
+  font-size:50px;
+  width:100%;
+  text-align:center;
+  cursor:pointer;
+  border:2px solid #fff;
+}
+.pic-card.correct{background:linear-gradient(90deg,#c6f6d5,#dfffe8)}
+.pic-card.wrong{animation:shake .3s}
+
+/* 听音选词 布局 */
+.board.listen{
+  grid-template-columns: 1fr;
+  justify-items:center;
+}
+.listen-area{
+  text-align:center;
+  padding:16px;
+}
+.listen-btn{
+  font-size:50px;
+  padding:10px 16px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#ffd194,#ff7aa2);
+  color:white;
+  border:none;
+  margin-bottom:12px;
+  cursor:pointer;
+}
+.options{
+  display:grid;
+  gap:10px;
+  grid-template-columns: repeat(2, 1fr);
+  width:100%;
+}
+.option{
+  padding:12px;
+  font-size:50px;
+  border-radius:10px;
+  background:var(--card);
+  cursor:pointer;
+  border:2px solid #fff;
+}
+.option.correct{background:#d4f7d6}
+.option.wrong{background:#ffd6d6}
+
+.message{
+  margin-top:10px;
+  text-align:center;
+  font-weight:600;
+  color:var(--muted);
+}
+
+/* 适应小屏 */
+@media (max-width:720px){
+  .board.match{grid-template-columns:1fr}
+  .picture-grid{grid-template-columns: repeat(3, 1fr)}
+  .controls{gap:8px}
+}
+
+/* 简易彩带（庆祝） */
+.confetti{
+  position:fixed;
+  left:0;right:0;top:0;height:0;pointer-events:none;
+}
+.confetti .piece{
+  position:fixed;
+  width:10px;height:16px;
+  opacity:0.95;
+  transform:translateY(-10vh);
+  animation:fall 1200ms linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg); opacity:1}
+}
